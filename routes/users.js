@@ -47,20 +47,19 @@ router.get('/insertnew', function (req, res, next) {
             });
         })
         .catch((err) => {
-            console.log(err);
+            throw err;
         })
 });
 
 router.get('/getall', function (req, res, next) {
-    UserModel.find({}, function(err, users) {
-        var userMap = {};
-    
-        users.forEach(function(user) {
-          userMap[user._id] = user;
-        });
-    
-        res.send(userMap);  
-      });
+    UserModel.find({}, function (err, docs) {
+        if (!err) {
+            const users = docs.map(item => item['_doc'])
+            res.json(users);
+        } else {
+            throw err;
+        }
+    });
 });
 
 module.exports = router;
