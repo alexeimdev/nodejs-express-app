@@ -12,7 +12,7 @@ var UserModel = require('../providers/UserModel');
 //     });
 // });
 
-router.get('/', function (req, res, next) {
+router.get('/insertnew', function (req, res, next) {
     fetch('https://randomuser.me/api')
         .then(response => response.json())
         .then(json => json.results)
@@ -51,5 +51,16 @@ router.get('/', function (req, res, next) {
         })
 });
 
+router.get('/getall', function (req, res, next) {
+    UserModel.find({}, function(err, users) {
+        var userMap = {};
+    
+        users.forEach(function(user) {
+          userMap[user._id] = user;
+        });
+    
+        res.send(userMap);  
+      });
+});
 
 module.exports = router;
