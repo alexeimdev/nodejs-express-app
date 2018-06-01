@@ -12,6 +12,7 @@
     "http-errors": "~1.6.2",
     "mongoose": "^5.1.2",
     "morgan": "~1.9.0",
+    "node-fetch": "^2.1.2",
     "vash": "~0.12.4"
   },
   "devDependencies": {
