@@ -1,0 +1,26 @@
+.users-list {
+    border: 1px solid red;
+}
+
+.users-list .user-wrapper {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.users-list .user-wrapper .user-pic {
+    width: 200px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200px 200px;
+}
+
+
+.users-list .user-wrapper .user-details {
+    width: 200px;
+}
