@@ -18,33 +18,38 @@ router.get('/insertnew', function (req, res, next) {
         .then(json => json.results)
         .then(results => results[0])
         .then(user => {
-            const newUser = new UserModel({
-                gender: user.gender,
-                name: {
-                    title: user.name.title,
-                    first: user.name.first,
-                    last: user.name.last
-                },
-                location: {
-                    street: user.location.street,
-                    city: user.location.city,
-                    state: user.location.state,
-                    postcode: user.location.postcode
-                },
-                email: user.email,
-                dob: user.dob,
-                phone: user.phone,
-                cell: user.cell,
-                picture: {
-                    large: user.picture.large,
-                    medium: user.picture.medium,
-                    thumbnail: user.picture.thumbnail
-                }
-            });
-            newUser.save(function (err) {
-                if (err) throw err;
-                res.json('User saved successfully!');
-            });
+            try {
+                const newUser = new UserModel({
+                    gender: user.gender,
+                    name: {
+                        title: user.name.title,
+                        first: user.name.first,
+                        last: user.name.last
+                    },
+                    location: {
+                        street: user.location.street,
+                        city: user.location.city,
+                        state: user.location.state,
+                        postcode: user.location.postcode
+                    },
+                    email: user.email,
+                    dob: user.dob,
+                    phone: user.phone,
+                    cell: user.cell,
+                    picture: {
+                        large: user.picture.large,
+                        medium: user.picture.medium,
+                        thumbnail: user.picture.thumbnail
+                    }
+                });
+                newUser.save(function (err) {
+                    if (err) throw err;
+                    res.json('User saved successfully!');
+                });
+            }
+            catch (err) {
+                console.log(err);
+            }
         })
         .catch((err) => {
             throw err;
@@ -52,14 +57,19 @@ router.get('/insertnew', function (req, res, next) {
 });
 
 router.get('/getall', function (req, res, next) {
-    UserModel.find({}, function (err, docs) {
-        if (!err) {
-            const users = docs.map(item => item['_doc'])
-            res.json(users);
-        } else {
-            throw err;
-        }
-    });
+    try {
+        UserModel.find({}, function (err, docs) {
+            if (!err) {
+                const users = docs.map(item => item['_doc'])
+                res.json(users);
+            } else {
+                throw err;
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
+
 });
 
 module.exports = router;
