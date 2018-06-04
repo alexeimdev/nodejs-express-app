@@ -69,7 +69,21 @@ router.get('/getall', function (req, res, next) {
     } catch (err) {
         console.log(err);
     }
+});
 
+router.get('/getuser/:id', function (req, res, next) {
+    try {
+        UserModel.find({_id: req.params.id}, function (err, docs) {
+            if (!err) {
+                const user = docs.map(item => item['_doc'])[0]
+                res.json(user);
+            } else {
+                throw err;
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 module.exports = router;
