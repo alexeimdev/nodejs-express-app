@@ -18,7 +18,7 @@ var userSchema = new Schema({
         street: String,
         city: String,
         state: String,
-        postcode: Number
+        postcode: String
     },
     email: String,
     dob: String,
