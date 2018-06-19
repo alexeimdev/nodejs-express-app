@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
+import * as types from '../actions/actionTypes';
 import './Users.css';
 
 class Users extends Component {
@@ -10,14 +13,8 @@ class Users extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/users/getall')
-            .then(res => res.json())
-            .then(users => {
-                this.setState({
-                    users: users
-                })
-            })
-            .catch(err => console.log(err))
+        debugger;
+        this.props.fetchUsers();
     }
 
     render() {
@@ -35,4 +32,18 @@ class Users extends Component {
     }
 }
 
-export default Users;
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchUsers: () => {
+            dispatch({ type: types.FETCHING })
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
