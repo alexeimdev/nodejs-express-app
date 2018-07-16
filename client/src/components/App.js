@@ -7,7 +7,7 @@ const App = () => (
     <div className="App">
         <Counter/>
         <Counter2/>
-        {/* <Users/> */}
+        <Users/>
     </div>
 )
 

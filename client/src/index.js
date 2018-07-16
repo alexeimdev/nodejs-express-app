@@ -5,7 +5,10 @@ import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore'
 
+import fetchUsersSaga from './sagas'
+
 const store = configureStore();
+store.runSaga(fetchUsersSaga);
 
 ReactDOM.render(
     <Provider store={store}>

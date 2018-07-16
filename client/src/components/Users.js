@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as types from '../actions/actionTypes';
+import { fetchUsersAction } from '../actions/actions';
+
 import './Users.css';
 
 class Users extends Component {
@@ -38,7 +39,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchUsers: () => dispatch({ type: types.FETCHING })
+        fetchUsers: () => dispatch(fetchUsersAction())
     };
 }
 
