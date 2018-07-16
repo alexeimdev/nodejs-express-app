@@ -8,3 +8,15 @@ export function fetchUsers() {
             .catch(err => dispatch({ type: types.FETCHING_SUCCEDED, payload: err }))
     }
 }
+
+export function increaseCounterAction() {
+    return {
+        type: types.INCREASE
+    };
+}
+
+export function decreaseCounterAction() {
+    return {
+        type: types.DECREASE
+    };
+}

@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as types from '../actions/actionTypes';
+import { increaseCounterAction, decreaseCounterAction } from '../actions/actions';
+//import './Counter.css';
 
 class Counter extends Component {
     render() {
+        const { doIncrease, doDecrease, counter } = this.props;
+
         return (
-            <div>
-                <div>{this.props.counter}</div>
-                <div onClick={() => this.props.onIncrease()}>+</div>
-                <div onClick={() => this.props.onDecrease()}>-</div>
+            <div className="counter-wrapper">
+                <div className="counter-display-wrapper">
+                    <div className="counter-display">
+                        {counter}
+                    </div>
+                </div>
+                <div className="counter-buttons">
+                    <div className="btn-wrapper">
+                        <a className="btn btn-inc" onClick={() => doIncrease()}>+</a>
+                    </div>
+                    <div className="btn-wrapper">
+                        <a className="btn btn-dec" onClick={() => doDecrease()}>-</a>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -22,12 +35,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onIncrease: () => {
-            dispatch({ type: types.INCREASE })
-        },
-        onDecrease: () => {
-            dispatch({ type: types.DECREASE })
-        }
+        doIncrease: () => dispatch(increaseCounterAction()),
+        doDecrease: () => dispatch(decreaseCounterAction())
     };
 }
 

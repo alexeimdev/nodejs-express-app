@@ -1,0 +1,52 @@
+.counter-wrapper {
+    border: 1px solid black;
+    width: 150px;
+    border-radius: 10px;
+    padding: 5px;
+    display: table;
+}
+
+.counter-display-wrapper {
+    display: table-row;
+    border: 1px solid black;
+    height: 60px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.counter-display {
+    display: table-cell;
+}
+
+.counter-buttons {
+    display: table-row;
+}
+
+.btn-wrapper {
+    display: table-cell;
+    padding: 5px;
+}
+
+.btn {
+    width: 50px;
+    height: 50px;
+    border-width: 1px;
+    border-style: solid;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.btn.btn-inc {
+    border-color: #009688;
+    background-color: #02776c;
+}
+
+.btn.btn-dec {
+    border-color: #c10444;
+    background-color: #e91e63;
+}
