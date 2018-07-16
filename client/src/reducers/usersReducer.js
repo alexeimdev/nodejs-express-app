@@ -3,8 +3,8 @@ import * as types from '../actions/actionTypes';
 import * as actions from '../actions/actions';
 
 export default function counterReducer (state = initialState.users, action) {
-    debugger;
     const prevState = state;
+    debugger;
     switch (action.type) {
         case types.FETCHING: {
             return actions.fetchUsers();

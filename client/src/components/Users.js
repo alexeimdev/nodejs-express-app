@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
 import * as types from '../actions/actionTypes';
 import './Users.css';
 
@@ -13,15 +12,14 @@ class Users extends Component {
     }
 
     componentDidMount() {
-        debugger;
         this.props.fetchUsers();
     }
 
     render() {
-        const { users } = this.state.users;
+        const { users } = this.props;
         return (
             <div className="users-list">
-                {this.state.users.map(user =>
+                {users.map(user =>
                     <div className="user-wrapper"> 
                          <div className="user-pic" style={{backgroundImage: `url(${user.picture.large})`}}></div>
                          <div className="user-details">{user.name.title} {user.name.first} {user.name.last}</div>                   
@@ -40,9 +38,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchUsers: () => {
-            dispatch({ type: types.FETCHING })
-        }
+        fetchUsers: () => dispatch({ type: types.FETCHING })
     };
 }
 
