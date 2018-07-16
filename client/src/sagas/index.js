@@ -1,11 +1,12 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as types from '../actions/actionTypes';
+import axios from 'axios';
 
 function* fetchUsers() {
     try {
         const users = yield call(() => {
-            return fetch('http://localhost:3000/users/getall')
-                   .then(res => res.json())
+            return axios.get('http://localhost:3000/users/getall')
+                   .then(res => res.data);
         });
         yield put({ type: types.FETCHING_SUCCEDED, payload: users });
     } catch (e) {
