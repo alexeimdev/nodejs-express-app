@@ -10,6 +10,7 @@
     height: 200px;
     overflow: hidden;
     border: 1px solid black;
+    animation: fadein 1s;
 }
 
 .users-list .user-wrapper .user-pic {
@@ -23,4 +24,9 @@
 
 .users-list .user-wrapper .user-details {
     width: 200px;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
