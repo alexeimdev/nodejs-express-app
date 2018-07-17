@@ -60,14 +60,16 @@ router.get('/insertnew/:numberOfResults', function (req, res, next) {
 
 router.get('/getall', function (req, res, next) {
     try {
-        UserModel.find({}, function (err, docs) {
-            if (!err) {
-                const users = docs.map(item => item['_doc'])
-                res.json(users);
-            } else {
-                throw err;
-            }
-        });
+        setTimeout(() =>{
+            UserModel.find({}, function (err, docs) {
+                if (!err) {
+                    const users = docs.map(item => item['_doc'])
+                    res.json(users);
+                } else {
+                    throw err;
+                }
+            });
+        }, 2000);
     } catch (err) {
         console.log(err);
     }

@@ -17,3 +17,15 @@ export function decreaseCounterAction() {
         type: types.DECREASE
     };
 }
+
+export function showLoaderAction() {
+    return {
+        type: types.SHOW_LOADRER
+    };
+}
+
+export function hideLoaderAction() {
+    return {
+        type: types.HIDE_LOADRER
+    };
+}

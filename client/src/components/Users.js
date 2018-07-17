@@ -39,7 +39,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchUsers: () => dispatch(fetchUsersAction())
+        fetchUsers: () => dispatch(fetchUsersAction()),
     };
 }
 
