@@ -7,12 +7,12 @@ function* fetchUsers() {
         yield put({ type: types.SHOW_LOADRER });
         const users = yield call(() => {
             return axios.get('http://localhost:3000/users/getall')
-                   .then(res => res.data);
+                .then(res => res.data);
         });
         yield put({ type: types.FETCHING_SUCCEDED, payload: users });
-        yield put({ type: types.HIDE_LOADRER });
     } catch (e) {
         yield put({ type: types.FETCHING_ERROR, payload: e.message });
+    } finally {
         yield put({ type: types.HIDE_LOADRER });
     }
 }

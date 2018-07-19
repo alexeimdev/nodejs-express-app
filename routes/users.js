@@ -69,7 +69,7 @@ router.get('/getall', function (req, res, next) {
                     throw err;
                 }
             });
-        }, 2000);
+        }, 500);
     } catch (err) {
         console.log(err);
     }
