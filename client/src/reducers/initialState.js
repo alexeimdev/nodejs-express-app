@@ -3,5 +3,5 @@ export default {
     counter2: 0,
     display: 1,
     users: [],
-    loader: false
+    loaded: true
 }

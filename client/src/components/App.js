@@ -22,7 +22,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        isDisplayLoader: state.loader
+        isDisplayLoader: !state.loaded
     };
 }
 
