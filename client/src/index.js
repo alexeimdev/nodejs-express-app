@@ -6,7 +6,11 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore'
 import fetchUsersSaga from './sagas';
 import { Route } from "react-router";
-import { ConnectedRouter, push } from "react-router-redux";
+import { ConnectedRouter } from "react-router-redux";
+import { Link } from 'react-router-dom'
+
+import Counter from './components/Counter';
+import Counter2 from './components/Counter2';
 
 const store = configureStore();
 store.runSaga(fetchUsersSaga);
@@ -21,15 +25,28 @@ const history = store.history;
 
 ReactDOM.render(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <div>
-          <Route exact path="/" component={App} />
-          {/* <Route path="/about" component={About} />
-          <Route path="/topics" component={Topics} /> */}
-        </div>
-      </ConnectedRouter>
+        <ConnectedRouter history={history}>
+            <div>
+                <ul>
+                    <li>
+                        <Link to="/"> Home </Link>
+                    </li>
+                    <li>
+                        <Link to="/counter"> Counter </Link>
+                    </li>
+                    <li>
+                        <Link to="/counter2"> Counter2 </Link>
+                    </li>
+                </ul>
+                <div>
+                    <Route exact path="/" component={App} />
+                    <Route path="/counter" component={Counter} />
+                    <Route path="/counter2" component={Counter2} />
+                </div>
+            </div>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById("root")
-  );
+);
 
 registerServiceWorker();
