@@ -6,8 +6,8 @@ var UserModel = require('../providers/UserModel');
 router.get('/insertnew/:numberOfResults', function (req, res, next) {
     const numberOfResults = req.params.numberOfResults;
     fetch(`https://randomuser.me/api/?page=1&results=${numberOfResults}&seed=abc`)
-        .then((response) => { 
-            return response.json() 
+        .then((response) => {
+            return response.json()
         })
         .then((json) => {
             return json.results
@@ -50,7 +50,7 @@ router.get('/insertnew/:numberOfResults', function (req, res, next) {
                 if (err) throw err;
                 res.json(`${numberOfResults} users saved successfully!`);
             });
-            
+
         })
         .catch((err) => {
             throw err;
@@ -60,16 +60,14 @@ router.get('/insertnew/:numberOfResults', function (req, res, next) {
 
 router.get('/getall', function (req, res, next) {
     try {
-        setTimeout(() =>{
-            UserModel.find({}, function (err, docs) {
-                if (!err) {
-                    const users = docs.map(item => item['_doc'])
-                    res.json(users);
-                } else {
-                    throw err;
-                }
-            });
-        }, 500);
+        UserModel.find({}, function (err, docs) {
+            if (!err) {
+                const users = docs.map(item => item['_doc'])
+                res.json(users);
+            } else {
+                throw err;
+            }
+        });
     } catch (err) {
         console.log(err);
     }
