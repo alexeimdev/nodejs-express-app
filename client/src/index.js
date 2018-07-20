@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 
 import Counter from './components/Counter';
 import Counter2 from './components/Counter2';
+import Loader from './components/Loader';
 
 const store = configureStore();
 store.runSaga(fetchUsersSaga);
@@ -43,11 +44,19 @@ ReactDOM.render(
                     <li>
                         <Link to="/counter2"> Counter2 </Link>
                     </li>
+                    <li>
+                        <Link to="/showloader"> Show Loader </Link>
+                    </li>    
+                    <li>
+                        <Link to="/hideloader"> Hide Loader </Link>
+                    </li>
                 </ul>
                 <div style={{ border: '1px solid red' }}>
                     <Route exact path="/" component={App} />
                     <Route path="/counter" component={Counter} />
                     <Route path="/counter2" component={Counter2} />
+                    <Route path="/showloader" render={() => <Loader isDisplay={true} />} />
+                    <Route path="/hideloader" render={() => <Loader isDisplay={false} />} />
                 </div>
             </div>
         </ConnectedRouter>
