@@ -29,6 +29,12 @@ ReactDOM.render(
             <div>
                 <ul>
                     <li>
+                        <a href="javascript:void(0);" onClick={() => history.goBack()}> Back </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" onClick={() => history.goForward()}> Forward </a>
+                    </li>
+                    <li>
                         <Link to="/"> Home </Link>
                     </li>
                     <li>
@@ -38,7 +44,7 @@ ReactDOM.render(
                         <Link to="/counter2"> Counter2 </Link>
                     </li>
                 </ul>
-                <div style={{border: '1px solid red'}}>
+                <div style={{ border: '1px solid red' }}>
                     <Route exact path="/" component={App} />
                     <Route path="/counter" component={Counter} />
                     <Route path="/counter2" component={Counter2} />
