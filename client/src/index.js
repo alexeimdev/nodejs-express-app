@@ -4,25 +4,30 @@ import App from './components/App';
 import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore'
-import fetchUsersSaga from './sagas';
-import { Route } from "react-router";
+import fetchUsersSaga from './sagas/usersSaga';
+import fetchUserSaga from './sagas/userSaga';
+import { Switch, Route } from "react-router";
+import { Link } from 'react-router-dom';
+//import { Router, Route, BrowserRouter, browserHistory } from 'react-router-dom';
+
 import { ConnectedRouter } from "react-router-redux";
-import { Link } from 'react-router-dom'
+import createHistory from "history/createBrowserHistory";
+import initialState from './reducers/initialState';
 
 import Counter from './components/Counter';
 import Counter2 from './components/Counter2';
 import Loader from './components/Loader';
+import UserDetails from './components/UserDetails';
 
-const store = configureStore();
-store.runSaga(fetchUsersSaga);
-const history = store.history;
+const history = createHistory();
+const { store, runSaga } = configureStore(initialState, history);
 
-// ReactDOM.render(
-//     <Provider store={store}>
-//         <App />
-//     </Provider>,
-//     document.getElementById('root')
-// );
+runSaga(fetchUsersSaga);
+runSaga(fetchUserSaga);
+
+store.subscribe(() => {
+    console.log('store.getState', store.getState());
+})
 
 ReactDOM.render(
     <Provider store={store}>
@@ -35,7 +40,7 @@ ReactDOM.render(
                     <li>
                         <a href="javascript:void(0);" onClick={() => history.goForward()}> Forward </a>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/"> Home </Link>
                     </li>
                     <li>
@@ -46,10 +51,10 @@ ReactDOM.render(
                     </li>
                     <li>
                         <Link to="/showloader"> Show Loader </Link>
-                    </li>    
+                    </li>
                     <li>
                         <Link to="/hideloader"> Hide Loader </Link>
-                    </li>
+                    </li> */}
                 </ul>
                 <div style={{ border: '1px solid red' }}>
                     <Route exact path="/" component={App} />

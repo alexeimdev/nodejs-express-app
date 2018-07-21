@@ -1,0 +1,32 @@
+.user-details {
+    /* border: 1px solid red; */
+}
+
+.user-details .user-wrapper {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid black;
+    animation: fadein 1s;
+}
+
+.user-details .user-wrapper .user-pic {
+    width: 200px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200px 200px;
+}
+
+
+.user-details .user-wrapper .user-details {
+    width: 200px;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

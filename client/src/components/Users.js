@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsersAction } from '../actions/actions';
+import { Link } from 'react-router-dom'
+import { fetchUsersAction, setUserAction, getUserAction } from '../actions/actions';
 
 import './Users.css';
 
@@ -17,15 +18,17 @@ class Users extends Component {
     }
 
     render() {
-        const { users } = this.props;
+        const { users, setUserAction } = this.props;
         return (
             <div className="users-list">
                 {users.map(user =>
-                    <div className="user-wrapper"> 
-                         <div className="user-pic" style={{backgroundImage: `url(${user.picture.large})`}}></div>
-                         <div className="user-details">{user.name.title} {user.name.first} {user.name.last}</div>                   
-                    </div>
-                )} 
+                    <Link to="/user" onClick={(user) => { setUserAction(user) }}>
+                        <div className="user-wrapper">
+                            <div className="user-pic" style={{ backgroundImage: `url(${user.picture.large})` }}></div>
+                            <div className="user-details">{user.name.title} {user.name.first} {user.name.last}</div>
+                        </div>
+                    </Link>
+                )}
             </div>
         );
     }
@@ -40,6 +43,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         fetchUsers: () => dispatch(fetchUsersAction()),
+        setUserAction: (user) => dispatch(setUserAction(user)),
+        getUserAction: () => dispatch(getUserAction())
     };
 }
 

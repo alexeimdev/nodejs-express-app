@@ -1,5 +1,5 @@
 .loader {
-    background: url(/static/media/loader.cdae69e2.gif) center center no-repeat;
+    background: url('../resources/images/loader.gif') center center no-repeat;
     width: 200px;
     height: 200px;
     position: absolute;
